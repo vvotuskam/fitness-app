@@ -1,0 +1,23 @@
+spring:
+  liquibase:
+    enabled: false
+
+  main:
+    allow-bean-definition-overriding: true
+
+  datasource:
+    username: postgres
+    password: postgres
+    url: jdbc:postgresql://localhost:5432/fitness_app
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+
+#  security:
+#    oauth2:
+#      resourceserver:
+#        jwt:
+#          issuer-uri: http://localhost:8762/realms/fitness-app
