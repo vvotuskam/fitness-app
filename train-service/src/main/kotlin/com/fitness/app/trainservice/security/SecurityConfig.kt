@@ -15,10 +15,16 @@ import org.springframework.security.web.SecurityFilterChain
 class SecurityConfig {
 
     @Bean
-    fun filterChain(http: HttpSecurity): SecurityFilterChain {
+    fun filterChain(
+        http: HttpSecurity,
+        keycloakJwtConverter: KeycloakJwtConverter
+    ): SecurityFilterChain {
         http
-            .authorizeHttpRequests { it.requestMatchers(DELETE).permitAll() }
-            .authorizeHttpRequests { it.anyRequest().permitAll() }
+            .cors(Customizer.withDefaults())
+            .authorizeHttpRequests { it.anyRequest().authenticated() }
+            .oauth2ResourceServer { oauth2 ->
+                oauth2.jwt { jwt -> jwt.jwtAuthenticationConverter(keycloakJwtConverter) }
+            }
         return http.build()
     }
 }

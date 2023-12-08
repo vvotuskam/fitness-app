@@ -7,5 +7,7 @@ data class TrainResponse(
     val name: String,
     val description: String,
     val date: String,
-    val time: String
+    val time: String,
+    val instructorName: String,
+    val applied: Boolean
 )
